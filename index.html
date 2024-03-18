@@ -1,87 +1,51 @@
-<!--
-# About me
-Not a developer in real life but like to write some code sometimes.
-Say hello at loic.j.julien@gmail.com
--->
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Google AdWords Keywords Wrapper</title>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-
-    <!-- Bootstrap css & js -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous" />
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-    <!-- Offline développement 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.min.js"></script>
-	Fin Offline développement -->
-
-    <!-- App css -->
-    <link rel="stylesheet" type="text/css" href="css/app.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/index.css" />
+    <title>AdWords Wrapper</title>
   </head>
-
   <body>
-    <!-- Container ======================================================== -->
-
-    <container class="col-xs-12">
-      <div class="col-xs-12 text-center" id="header">
-        <h1 class="text-center">Google AdWords Keywords Wrapper</h1>
-        Wrap your keywords for Google AdWords in 1 clic and 1 second !
-      </div>
-
-      <!-- Column - Left  ======================================================== -->
-
-      <div class="col-xs-12 col-sm-6 center-block" id="wrap-block">
-        <textarea id="unwrapped-keywords" rows="8" placeholder="Enters your keywords here" class="textarea center-block"></textarea><br />
-        <button id="action-wrap" class="center-block btn btn-secondary">Create keywords</button>
-
-        <!-- User Choices -->
-        <div class="checkbox text-center">
-          <label style="display: block">
-            <b>Choose what type of keywords you want to create :</b>
-          </label>
-          <label class="choice"> <input type="checkbox" id="choice-broad" />Broadmatch </label>
-          <label class="choice"> <input type="checkbox" id="choice-broadmodified" checked />Modified broadmatch </label>
-          <label class="choice"> <input type="checkbox" id="choice-phrase" checked />Phrase </label>
-          <label class="choice"> <input type="checkbox" id="choice-exact" checked />Exact </label>
-
-          <br />
-          <small>(preselected keywoards are recommanded)</small>
-        </div>
-
-        <!-- User Choices - End-->
-      </div>
-
-      <!-- Column - Left - End ======================================================== -->
-
-      <!-- Column - Right  ======================================================== -->
-
-      <!-- HTML -->
-      <div class="col-xs-12 col-sm-6 center-block" id="result-block">
-        <textarea id="wrappedKeywords" rows="8" placeholder="Magic happens here" class="textarea center-block"></textarea><br />
-        <div class="center-block text-center" id="buttons">
-          <button id="copy-button" title="Click to copy me." class="center-block btn btn-secondary">Copy</button>
-          <small>(Only for the latest browsers)</small>
+    <div class="container">
+      <div class="input-column">
+        <!-- Column 1: Input Data -->
+        <div class="col-md-3">
+          <h3>Input Data</h3>
+          <textarea id="input-data" rows="10" cols="50"></textarea><br />
+          <label for="keyword-type">Select Keyword Types:</label><br />
+          <div class="tipe-data">
+            <input type="checkbox" id="phrase-checkbox" value="phrase" /> <label for="phrase-checkbox">Phrase Match</label><br />
+            <input type="checkbox" id="exact-checkbox" value="exact" /> <label for="exact-checkbox">Exact Match</label><br />
+            <input type="checkbox" id="modifiedBroad-checkbox" value="modifiedBroad" /> <label for="modifiedBroad-checkbox">Modified Broad Match</label><br />
+          </div>
+          <button onclick="createKeywords()" class="create-keywords">Create Keywords</button>
         </div>
       </div>
+      <div class="output-column">
+        <!-- Column 2: Phrase Match -->
+        <div>
+          <h3>Phrase Match</h3>
+          <textarea id="phrase-output" rows="10" cols="50"></textarea><br />
+          <button onclick="copyToClipboard('phrase-output')" class="btn btn-secondary">Copy</button>
+        </div>
 
-      <!-- Column - Right - End  ======================================================== -->
+        <!-- Column 3: Exact Match -->
+        <div>
+          <h3>Exact Match</h3>
+          <textarea id="exact-output" rows="10" cols="50" readonly></textarea><br />
+          <button onclick="copyToClipboard('exact-output')" class="btn btn-secondary">Copy</button>
+        </div>
 
-      <!-- Content  - End ======================================================== -->
-    </container>
+        <!-- Column 4: Modified Broad Match -->
+        <div>
+          <h3>Modified Broad Match</h3>
+          <textarea id="modifiedBroad-output" rows="10" cols="50" readonly></textarea><br />
+          <button onclick="copyToClipboard('modifiedBroad-output')" class="btn btn-secondary">Copy</button>
+        </div>
+      </div>
+    </div>
 
-    <!-- Container - End ======================================================== -->
-
-    <!-- JS -->
-    <script src="node_modules/zeroclipboard/dist/ZeroClipboard.js"></script>
-    <script src="js/app.js"></script>
+    <script src="app.js"></script>
   </body>
 </html>
